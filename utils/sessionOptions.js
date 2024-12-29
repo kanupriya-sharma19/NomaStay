@@ -4,7 +4,7 @@ import MongoStore from "connect-mongo";
 
 
 const store=MongoStore.create({
-  mongoUrl:"mongodb+srv://kanu:seema609@cluster0.mmmkp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+  mongoUrl:process.env.MONGODB_URL,
   crypto:{
     secret:process.env.SECRET
   },
