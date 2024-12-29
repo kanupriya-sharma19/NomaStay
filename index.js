@@ -59,11 +59,14 @@ app.get("/test", (req, res) => {
 //middlware to store locally
 app.use(temp_storage);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the homepage!");
+});
 
 // Routes
-app.use("/",user);
 app.use("/listings", list);
 app.use("/listings/:id/review", review);
+app.use("/", user);
 
 
 // Error handling middleware (must be placed after all routes)
