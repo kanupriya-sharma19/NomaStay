@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import { connectToDB } from "./utils/connection.js";
 import { list } from "./routes/listings.js";
 import { review } from "./routes/reviews.js";
-import {user } from "./routes/user.js";
+import { user } from "./routes/user.js";
 import methodOverride from "method-override";
 import { myerror } from "./middlewares/myerror.js";
 import { ExpressError } from "./utils/ExpressError.js";
@@ -17,6 +17,7 @@ import { sessionOptions } from "./utils/sessionOptions.js";
 import { temp_storage } from "./utils/localStorage.js";
 import { User } from "./models/user.js";
 import localStrategy from "passport-local";
+import { displayall } from "./controllers/listing.js";
 
 // Recreate __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -36,7 +37,6 @@ app.use(express.json()); // Body parser
 app.use(express.urlencoded({ extended: true })); // URL-encoded data parser, key value form,makes it accesible via req.body
 app.use(methodOverride("_method")); // Override HTTP methods
 
-
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -55,23 +55,19 @@ app.get("/test", (req, res) => {
   res.send("Test route works!");
 });
 
-
 //middlware to store locally
 app.use(temp_storage);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the homepage!");
-});
+app.get("/", displayall);
 
 // Routes
 app.use("/listings", list);
 app.use("/listings/:id/review", review);
 app.use("/", user);
 
-
 // Error handling middleware (must be placed after all routes)
 app.all("*", (req, res, next) => {
-  console.log("Request URL not found:", req.originalUrl); 
+  console.log("Request URL not found:", req.originalUrl);
   next(new ExpressError(404, "Page not found!"));
 });
 
@@ -82,4 +78,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
