@@ -15,7 +15,7 @@ const postUser = wrapAsync(async (req, res, next) => {
     req.login(registeredUser, (err) => {
       if (err) {
         return next(err);
-      }
+      } 
       req.flash("success", "Welcome to Wanderlust!");
       res.redirect("/listings/view");
     });
@@ -23,7 +23,7 @@ const postUser = wrapAsync(async (req, res, next) => {
     //await registeredUser.save(); no need ,register op
   } catch (e) {
     req.flash("error", e.message);
-    res.redirect("/signup");
+    res.redirect("/user/signup");
   }
 });
 
@@ -31,11 +31,20 @@ const loginForm = wrapAsync(async (req, res, next) => {
   res.render("users/login.ejs");
 });
 
+
+
 const checkUser = wrapAsync(async (req, res, next) => {
   req.flash("success", "Welcome back to Wanderlust!");
-  let redirectUrl=res.locals.redirectUrl ||"/listings/view";
-  res.redirect( redirectUrl);
+ 
+  if (req.query.redirectUrl) {
+    res.locals.redirectUrl = req.query.redirectUrl;
+  }
+  let redirectUrl = res.locals.redirectUrl || "/listings/view";
+  
+
+  res.redirect(redirectUrl);
 });
+
 
 const logOut = wrapAsync(async (req, res, next) => {
   req.logout((err) => {

@@ -15,6 +15,9 @@ import flash from "connect-flash";
 import passport from "passport";
 import { sessionOptions } from "./utils/sessionOptions.js";
 import { temp_storage } from "./utils/localStorage.js";
+import { User } from "./models/user.js";
+import localStrategy from "passport-local";
+
 // Recreate __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,6 +48,12 @@ app.use(flash());
 //passport uses session as 1 session hi hona chahiye
 app.use(passport.initialize());
 app.use(passport.session()); //pata chale ki if user goes from page to page then 1 session
+passport.use(new localStrategy(User.authenticate())); //local startegy ke thru authenticate hone chahiye
+passport.serializeUser(User.serializeUser()); //store  data into session of user, basically seralize users into session
+passport.deserializeUser(User.deserializeUser()); //remove date from session of user
+app.get("/test", (req, res) => {
+  res.send("Test route works!");
+});
 
 
 //middlware to store locally
@@ -52,17 +61,22 @@ app.use(temp_storage);
 
 
 // Routes
+app.use("/",user);
 app.use("/listings", list);
 app.use("/listings/:id/review", review);
-app.use("/",user);
+
 
 // Error handling middleware (must be placed after all routes)
 app.all("*", (req, res, next) => {
+  console.log("Request URL not found:", req.originalUrl); 
   next(new ExpressError(404, "Page not found!"));
 });
+
 app.use(myerror);
 
 // Start server
-app.listen(process.env.PORT, () => {
-  console.log("Server is running on http://localhost:", process.env.PORT);
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
+
