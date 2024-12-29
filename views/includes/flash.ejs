@@ -1,0 +1,17 @@
+<%if(success && success.length){%>
+ <!-- isse bhi main page pe alert aayega as res.locals.success ek aaray hai jo empty hai but exists -->
+<div class="alert alert-success mt-3 col-6 offset-3 alert-dismissible fade show" role="alert">
+<%=success%>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<%}%>
+
+<%if(error && error.length){%>
+    <!-- isse bhi main page pe alert aayega as res.locals.success ek aaray hai jo empty hai but exists -->
+   <div class="alert alert-danger mt-3 col-6 offset-3 alert-dismissible fade show" role="alert">
+   <%=error%>
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+   
+   <%}%>

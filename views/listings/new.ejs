@@ -1,0 +1,177 @@
+<%- layout('/layouts/boilerplate') %>
+
+<div class="row mt-2">
+  <div class="col-8 offset-2">
+    <h3>Create a new Listing!</h3>
+    <form
+      method="POST"
+      action="/listings/create"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+    >
+      <!-- novaldiate browser ki default settings ko band kar deta hai used for validation as safari ki alag,chrome ki alag -->
+      <div class="mb-2">
+        <lable for="title" class="form-lable">Title</lable>
+        <input
+          name="listing[title]"
+          placeholder="Add a catchy title"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">
+          <!-- works only when the input is valid -->
+          Title looks good!
+        </div>
+        <div class="invalid-feedback">
+          <!-- works only when the input is invalid -->
+          Please enter the Title
+        </div>
+        <!-- required is deflaut of web browser,so use bootstrap -->
+      </div>
+      <div class="mb-2">
+        <lable for="description" class="form-lable">Description</lable>
+        <textarea
+          name="listing[description]"
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">
+          <!-- works only when the input is invalid -->
+          Please enter a short description
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <lable for="image" class="form-lable">Upload Image</lable>
+        <input
+          name="listing[image]"
+          type="file"
+          class="form-control"
+        required
+        />
+      
+      </div>
+      <div class="row">
+        <div class="mb-2 col-md-4">
+          <lable for="price" class="form-lable">Price</lable>
+          <input
+            name="listing[price]"
+            placeholder="1200"
+            class="form-control"
+            required
+            type="number"
+          />
+          <div class="invalid-feedback">
+            <!-- works only when the input is invalid -->
+            Price should be valid
+          </div>
+        </div>
+        <div class="mb-2 col-md-8">
+          <lable for="location" class="form-lable">Location</lable>
+          <input
+            name="listing[location]"
+            placeholder="Jaipur,Rajasthan"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">
+            <!-- works only when the input is invalid -->
+            Location should be valid
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-2 col-md-4">
+          
+            <lable for="country" class="form-lable">Country</lable>
+    
+            <input
+              name="listing[country]"
+              placeholder="India"
+              type="text"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">
+              <!-- works only when the input is invalid -->
+              Country name should be valid
+            </div>
+    
+        </div>
+        <div class="mb-2 col-md-8">
+<div class="input-group mb-2">
+  <div class="mb-2"> 
+    <!-- <label for="category" class="form-label">Categories</label> -->
+    <div class="dropdown mt-4">
+     
+      <button class="btn btn-outline-secondary dropdown-toggle  w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Select Categories
+      </button>
+      <ul class="dropdown-menu w-100 p-2" aria-labelledby="dropdownMenuButton">
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="trending" name="listing[category][]"
+            id="trending">
+            <label class="form-check-label" for="trending">Trending</label>
+          </div>
+        </li>
+        
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="iconic cities" id="iconic cities" name="listing[category][]">
+            <label class="form-check-label" for="iconic cities">Iconic Cities</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="mountains" id="mountains" name="listing[category][]">
+            <label class="form-check-label" for="mountains">Mountains</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="beach" id="beach" name="listing[category][]">
+            <label class="form-check-label" for="beach">Beach</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="pools" id="pools" name="listing[category][]">
+            <label class="form-check-label" for="pools">Pools</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="camping" id="camping" name="listing[category][]">
+            <label class="form-check-label" for="camping">Camping</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="nature" id="nature" name="listing[category][]">
+            <label class="form-check-label" for="nature">Nature</label>
+          </div>
+        </li>
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="arctic" id="arctic" name="listing[category][]">
+            <label class="form-check-label" for="arctic">Arctic</label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+</div>
+
+        </div>
+      </div>
+
+
+      <button class="btn btn-dark add-btn mb-2">Add</button>
+    </form>
+  </div>
+</div>
