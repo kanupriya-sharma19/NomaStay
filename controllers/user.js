@@ -23,7 +23,7 @@ const postUser = wrapAsync(async (req, res, next) => {
     //await registeredUser.save(); no need ,register op
   } catch (e) {
     req.flash("error", e.message);
-    res.redirect("/user/signup");
+    res.redirect("/signup");
   }
 });
 

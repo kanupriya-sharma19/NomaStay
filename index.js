@@ -51,9 +51,6 @@ app.use(passport.session()); //pata chale ki if user goes from page to page then
 passport.use(new localStrategy(User.authenticate())); //local startegy ke thru authenticate hone chahiye
 passport.serializeUser(User.serializeUser()); //store  data into session of user, basically seralize users into session
 passport.deserializeUser(User.deserializeUser()); //remove date from session of user
-app.get("/test", (req, res) => {
-  res.send("Test route works!");
-});
 
 //middlware to store locally
 app.use(temp_storage);
