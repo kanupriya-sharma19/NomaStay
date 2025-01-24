@@ -16,7 +16,7 @@ const postUser = wrapAsync(async (req, res, next) => {
       if (err) {
         return next(err);
       } 
-      req.flash("success", "Welcome to Wanderlust!");
+      req.flash("success", "Welcome to NamoStay!");
       res.redirect("/listings/view");
     });
     //login function completes then req.user has something tab tak undefined
@@ -34,7 +34,7 @@ const loginForm = wrapAsync(async (req, res, next) => {
 
 
 const checkUser = wrapAsync(async (req, res, next) => {
-  req.flash("success", "Welcome back to Wanderlust!");
+  req.flash("success", "Welcome back to NamoStay!");
  
   if (req.query.redirectUrl) {
     res.locals.redirectUrl = req.query.redirectUrl;
