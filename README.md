@@ -1,7 +1,7 @@
 ![Image](https://github.com/user-attachments/assets/d71d59d0-066f-45d8-8471-1064d3497da3)
 ![Image](https://github.com/user-attachments/assets/ff02625b-22b6-4ff6-ae48-bc89dd6a0889)
 ---
-https://nomastay.onrender.com/
+https://nomastay.onrender.com/listings/view
 ---
 
 ### **NomaStay**  
